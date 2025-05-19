@@ -1,93 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'immuch/photo_gallery.dart';
+import 'Screens/home_screen.dart';
 import 'server_connection_screen.dart';
+import 'login/login_screen.dart';
+import 'splashscreen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final prefs = await SharedPreferences.getInstance();
-  final hasServer = prefs.containsKey('server_address');
-  runApp(MyApp(showServerScreen: !hasServer));
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final bool showServerScreen;
-  const MyApp({super.key, required this.showServerScreen});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Testing',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: showServerScreen ? '/server' : '/login',
+
+      // home: PhotoGallery(
+      //     imageUrls: [
+      //       'https://picsum.photos/id/1011/200/200',
+      //       'https://picsum.photos/id/1012/200/200',
+      //       'https://picsum.photos/id/1013/200/200',
+      //       // Add more URLs as needed
+      //     ],
+      //   ),
+      debugShowCheckedModeBanner: false,
+      home: SplashToLogin(),
       routes: {
+        '/home': (context) => const HomeScreen(),
         '/server': (context) => const ServerConnectionScreen(),
         '/login': (context) => const LoginScreen(),
-        '/home': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+        // '/home': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
       },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class SplashToLogin extends StatefulWidget {
+  const SplashToLogin({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<SplashToLogin> createState() => _SplashToLoginState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _SplashToLoginState extends State<SplashToLogin> {
+  @override
+  void initState() {
+    super.initState();
+    _navigate();
+  }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  Future<void> _navigate() async {
+    await Future.delayed(const Duration(seconds: 3));
+    final prefs = await SharedPreferences.getInstance();
+    // final hasServer = prefs.containsKey('server_address');
+    if (!mounted) return;
+    Navigator.of(context).pushReplacementNamed('/login');
+    // if (!hasServer) {
+    //   Navigator.of(context).pushReplacementNamed('/server');
+    // } else {
+    //   Navigator.of(context).pushReplacementNamed('/login');
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
-      body: Center(
-        child: const Text('Login Screen'),
-      ),
-    );
+    return const SplashScreen();
   }
 }
