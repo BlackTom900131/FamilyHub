@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'photo_gallery_item.dart';
+
 class PhotoGallery extends StatelessWidget {
   final List<String> imageUrls;
 
@@ -24,9 +26,19 @@ class PhotoGallery extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    imageUrls[index],
-                    fit: BoxFit.cover,
+                  // child: Image.network(
+                  //   imageUrls[index],
+                  //   fit: BoxFit.cover,
+                  // ),
+                  child: PhotoGalleryItem(
+                    imageUrls: [
+                      'https://picsum.photos/id/1011/100/100',
+                      'https://picsum.photos/id/1012/100/100',
+                      'https://picsum.photos/id/1013/100/100',
+                      'https://picsum.photos/id/1014/100/100',
+                    ],
+                    title: "",
+                    subtitle: 'A fun',
                   ),
                 );
               },

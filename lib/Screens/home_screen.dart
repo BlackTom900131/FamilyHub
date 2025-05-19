@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../immuch/photo_gallery.dart';
+import 'gallery_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -46,12 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
       //     ),
       //   ),
       // ),
-      child: PhotoGallery(imageUrls: [
-            'https://picsum.photos/id/1011/200/200',
-            'https://picsum.photos/id/1012/200/200',
-            'https://picsum.photos/id/1013/200/200',
-            // Add more URLs as needed
-          ],),
+      child: GalleryScreen(), // Replace with your actual gallery screen widget
     ),
     Center(child: Text('Files Page')),
     Center(child: Text('Location Page')),
