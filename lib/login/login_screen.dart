@@ -69,20 +69,9 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               const SizedBox(height: 30),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const LanguageSelector(),
-                  const Spacer(),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: IconButton(
-                      icon: const Icon(Icons.settings),
-                      onPressed: () {},
-                    ),
-                  ),
                 ],
               ),
               Expanded(
@@ -103,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Padding(
                               padding: EdgeInsets.only(bottom: 8.0),
                               child: Text(
-                                'My Family',
+                                'Sign In',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 26,
@@ -113,11 +102,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           const Align(
-                            alignment: Alignment.center,
+                            alignment: Alignment.centerLeft,
                             child: Padding(
                               padding: EdgeInsets.only(bottom: 8.0),
                               child: Text(
-                                'Sign In',
+                                'Username',
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 12,
@@ -145,6 +134,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           const SizedBox(height: 20),
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: 8.0),
+                              child: Text(
+                                'Password',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ),
                           TextField(
                             controller: _passwordController,
                             decoration: InputDecoration(
@@ -172,6 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             const SizedBox(height: 10),
                           ],
+                          const SizedBox(height: 40),
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
@@ -192,24 +195,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             width: double.infinity,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                TextButton(
-                                  onPressed: () {
-                                    // TODO: Implement Forgot Password
-                                  },
-                                  child: const Text(
-                                    'Forgot Password?',
-                                    style: TextStyle(color: Colors.blue),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
                                   ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    // TODO: Implement Sign Up
-                                  },
-                                  child: const Text(
-                                    'Sign Up',
-                                    style: TextStyle(color: Colors.blue),
+                                  child: IconButton(
+                                    icon: const Icon(Icons.settings),
+                                    onPressed: () {},
                                   ),
                                 ),
                               ],

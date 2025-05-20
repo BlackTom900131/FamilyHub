@@ -23,7 +23,7 @@ class GalleryScreen extends StatelessWidget {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.lightBlue[50],
-                hintText: 'Search photos',
+                hintText: 'Search',
                 prefixIcon: Icon(Icons.search),
                 border: InputBorder.none,
                 enabledBorder: InputBorder.none,
